@@ -1,6 +1,3 @@
-hello_world_server:
-	uvicorn app.quickstart:app --reload
-
 prediction_service:
 	uvicorn app.prediction_service:app --reload
 
@@ -15,4 +12,4 @@ prediction_service_container:
 
 
 
-.PHONY: hello_world_server prediction_service image
+.PHONY: prediction_service image
