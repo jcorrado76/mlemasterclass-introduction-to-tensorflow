@@ -21,6 +21,6 @@ if __name__ == "__main__":
     model.fit(X, y)
 
 
-    model_path = pathlib.Path("./app/model.joblib")
+    model_path = pathlib.Path("model.joblib")
     logger.info(f"Saving model to {model_path}")
     joblib.dump(model, model_path)

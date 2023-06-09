@@ -13,17 +13,18 @@ iris_class_names = load_iris().target_names
 model = joblib.load("model.joblib")
 
 class IrisSample(pydantic.BaseModel):
-    sepal_length: float
-    sepal_width: float
-    petal_length: float
-    petal_width: float
+    sepal_length: float = pydantic.Field(default=5.1, title="Sepal Length")
+    sepal_width: float = pydantic.Field(default=3.5, title="Sepal Width")
+    petal_length: float = pydantic.Field(default=1.4, title="Petal Length")
+    petal_width: float = pydantic.Field(default=0.2, title="Petal Width")
+
 
 @app.get("/")
 def hello_world():
     return {"message": "Hello World!"}
 
 
-@app.get("/predict")
+@app.post("/predict")
 async def predict(sample: IrisSample):
     prediction = model.predict(np.asarray([[
         sample.sepal_length,
