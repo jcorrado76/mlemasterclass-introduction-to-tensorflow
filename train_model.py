@@ -1,15 +1,26 @@
-import pickle
+"""
+Train a scikit learn model on the iris dataset and save it as an artifact
+"""
+if __name__ == "__main__":
+    import joblib
+    from sklearn.datasets import load_iris
+    from sklearn.ensemble import RandomForestClassifier
+    from loguru import logger
+    import pathlib
 
-import joblib
-from sklearn.datasets import load_iris
-from sklearn.ensemble import RandomForestClassifier
+    logger.info("Loading iris dataset")
+    iris = load_iris()
 
-iris = load_iris()
+    X = iris.data
+    logger.info("Example feature: {}", X[0])
+    y = iris.target
 
-X = iris.data
-y = iris.target
+    model = RandomForestClassifier()
 
-model = RandomForestClassifier()
-model.fit(X, y)
+    logger.info("Training model")
+    model.fit(X, y)
 
-joblib.dump(model, "./app/model.joblib")
+
+    model_path = pathlib.Path("./app/model.joblib")
+    logger.info(f"Saving model to {model_path}")
+    joblib.dump(model, model_path)
