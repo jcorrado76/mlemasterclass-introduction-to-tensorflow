@@ -23,4 +23,16 @@ Finally, install the dependencies from the `pyproject.toml` file:
 poetry install
 ```
 
+# Train Model
 
+First, we need to fit an actual machine learning model to deploy.
+
+In our case, we are going to use the Iris dataset, with a basic scikit-learn model.
+
+To train the model, run:
+
+```bash
+python train_model.py
+```
+
+This will create a model artifact `model.joblib` inside the `app` directory.
